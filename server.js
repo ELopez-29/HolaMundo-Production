@@ -1,4 +1,3 @@
-//server
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
@@ -99,6 +98,29 @@ app.post('/api/login', (req, res) => {
                     error: 'Usuario o contraseña incorrectos'
                 });
             }
+        }
+    );
+});
+
+// Ruta para registro
+app.post('/api/register', (req, res) => {
+    const { username, password, image } = req.body;
+
+    // Verifica que se hayan proporcionado todos los campos necesarios
+    if (!username || !password || !image) {
+        return res.status(400).json({ error: 'Usuario, contraseña e imagen son requeridos' });
+    }
+
+    // Inserta el nuevo usuario en la base de datos
+    db.run(
+        `INSERT INTO usuarios (username, password, image) VALUES (?, ?, ?)`,
+        [username, password, image],
+        function(err) {
+            if (err) {
+                console.error('Error al registrar usuario:', err);
+                return res.status(500).json({ error: 'Error al registrar el usuario. Puede que el usuario ya exista.' });
+            }
+            res.json({ success: true }); // Respuesta exitosa
         }
     );
 });
