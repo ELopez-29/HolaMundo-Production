@@ -57,6 +57,44 @@ app.post('/api/register', (req, res) => {
     );
 });
 
+// Ruta para login
+app.post('/api/login', (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Usuario y contraseña requeridos' });
+    }
+
+    // Verifica las credenciales del usuario en la base de datos
+    db.get(
+        'SELECT * FROM usuarios WHERE username = ? AND password = ?',
+        [username, password],
+        (err, row) => {
+            if (err) {
+                console.error('Error en consulta:', err);
+                return res.status(500).json({ error: 'Error del servidor' });
+            }
+
+            if (row) {
+                // Respuesta exitosa con los datos del usuario
+                res.json({
+                    success: true,
+                    user: {
+                        username: row.username,
+                        image: row.image
+                    }
+                });
+            } else {
+                // Respuesta de error si las credenciales son incorrectas
+                res.json({
+                    success: false,
+                    error: 'Usuario o contraseña incorrectos'
+                });
+            }
+        }
+    );
+});
+
 // Inicia el servidor
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
