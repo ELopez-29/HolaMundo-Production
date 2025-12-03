@@ -3,7 +3,7 @@ Styles */
 /* Estilo del cuerpo del documento */
 body {
     font-family: Arial, sans-serif; 
-    background-image: url('..//IMG/BannerGirl.gif'); /* imagen de fondo */
+    background-image: url('..//IMG/BannerGirl.gif'); /* Imagen de fondo */
     background-size: cover; 
     margin: 0; 
     padding: 0; 
@@ -73,6 +73,26 @@ button:hover {
     background-color: #d256cc; 
 }
 
+/* Estilo para el botón de registrar nuevo usuario */
+#registerButton {
+    background-color: #007bff; /* Color azul */
+    margin-top: 10px; /* Espaciado superior */
+}
+
+/* Efecto hover para el botón de registrar */
+#registerButton:hover {
+    background-color: #0056b3; /* Color azul más oscuro */
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+    color: #e9091f; 
+    text-align: center;
+    margin-top: 1em; 
+    min-height: 1em; 
+}
+
+
 /* Estilo para el botón de cerrar sesión */
 #logoutButton {
     background-color: #dc3545; 
@@ -97,6 +117,19 @@ button:hover {
     text-align: center; 
     margin-bottom: 20px; 
 }
+.success-message {
+    color: #28a745; /* Verde para éxito */
+    text-align: center;
+    margin-top: 1em;
+}
+
+.error-message {
+    color: #e9091f; /* Rojo para errores */
+    text-align: center;
+    margin-top: 1em;
+    min-height: 1em;
+}
+
 
 /* Estilo para mostrar el nombre de usuario */
 #usernameDisplay {
