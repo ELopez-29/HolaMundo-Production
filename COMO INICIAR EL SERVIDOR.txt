@@ -1,0 +1,36 @@
+COMO INSTALAR
+npm install -g json-server
+
+COMO INICIAR EL SERVIDOR 
+1.-
+cd C:\Users\Josec\Downloads\python\PROWEB\proyecto-sesionAvance
+2.-
+json-server --watch db.json --port 3001
+
+PARA APAGAR     
+Presiona CTRL + C
+
+se utlizo el SQLite con Node.js
+COMO INICIAR EL SERVIDOR 
+
+
+1.-
+cd C:\Users\Josec\Downloads\python\PROWEB\proyecto-sesionAvan
+
+
+2.-inicio
+npm start
+
+
+¿QUÉ ES JSON SERVER Y POR QUÉ SE INSTALÓ?
+JSON Server es una base de datos falsa que:
+
+Simula una API REST real
+
+Lee tu archivo db.json
+
+Crea endpoints automáticos (/usuarios)
+
+Permite hacer consultas como una base de datos real
+
+Se instaló para que tu aplicación pueda consultar usuarios desde una "base de datos" en lugar de tenerlos hardcodeados en el código.

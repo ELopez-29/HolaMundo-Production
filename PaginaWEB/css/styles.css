@@ -1,0 +1,149 @@
+/* Capeta css
+Styles */
+/* Estilo del cuerpo del documento */
+body {
+    font-family: Arial, sans-serif; 
+    background-image: url('..//IMG/BannerGirl.gif'); /* imagen de fondo */
+    background-size: cover; 
+    margin: 0; 
+    padding: 0; 
+    display: flex;  
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+}
+
+/* Contenedor principal para el contenido */
+.container {
+    width: 100%; 
+    max-width: 400px; 
+    padding: 20px; 
+    background-color: rgba(74, 239, 236, 0.8); /* Fondo semi-transparente */
+    border-radius: 8px; 
+}
+
+/* Estilos para contenedores de formulario y dashboard */
+.form-container, .dashboard-header, .dashboard-content {
+    padding: 2em; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+/* Estilos para títulos */
+h1, h2 {
+    color: #0c1112; 
+    text-align: center;
+}
+
+/* Estilo para grupos de entrada */
+.input-group {
+    margin-bottom: 1.5em; 
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px; 
+    color: #091d15; 
+}
+
+/* Estilo para campos de entrada de texto y contraseña */
+input[type="text"], input[type="password"] {
+    width: 100%; 
+    padding: 10px; 
+    border: 1px solid #030404; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+}
+
+/* Estilo para botones */
+button {
+    width: 100%; 
+    padding: 12px; 
+    border: none;
+    background-color: #da002f; 
+    color: rgb(31, 23, 23); 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 16px; 
+}
+
+/* Estilo para el efecto del botón */
+button:hover {
+    background-color: #d256cc; 
+}
+
+/* Estilo para el botón de cerrar sesión */
+#logoutButton {
+    background-color: #dc3545; 
+    margin-top: 1em; 
+}
+
+/* Estilo para el efecto del botón de cerrar sesión */
+#logoutButton:hover {
+    background-color: #c214e4;
+}
+
+/* Estilo para mensajes de error */
+.error-message {
+    color: #e9091f; 
+    text-align: center;
+    margin-top: 1em; 
+    min-height: 1em; 
+}
+
+/* Estilo para el encabezado del dashboard */
+.dashboard-header {
+    text-align: center; 
+    margin-bottom: 20px; 
+}
+
+/* Estilo para mostrar el nombre de usuario */
+#usernameDisplay {
+    color: #f41924; 
+}
+
+/* Colores de fondo específicos para cada usuario */
+#ErikLopezContent {
+    background-color: #0a52f9;
+}
+
+#SofiaContent {
+    background-color: #cb5079; 
+}
+
+#MiaContent { 
+    background-color: #15d825; 
+}
+
+#ZeusContent {
+    background-color: #b8fa3c;
+}
+
+#OdinContent {
+    background-color: #996ae1; 
+}
+
+#HadesContent {
+    background-color: #f40c2f;
+}
+
+#AresContent {
+    background-color: #1c39df; 
+}
+
+#ApoloContent {
+    background-color: #85ef0c;
+}
+
+#AtlasContent {
+    background-color: #36b5f0;
+}
+
+#AteneaContent {
+    background-color: #a21ea0;
+}
+
+#DanielaContent {
+    background-color: #d73be5; 
+}

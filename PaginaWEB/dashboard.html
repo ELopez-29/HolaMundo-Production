@@ -1,0 +1,39 @@
+<!--Dashboard-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mi App</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>
+        // Guarda de seguridad: si no hay sesión, redirige al login.
+        const session = sessionStorage.getItem('userSession');
+        if (!session) {
+            window.location.href = 'index.html'; // Redirige a la página de inicio de sesión si no hay sesión activa
+        }
+    </script>
+
+    <div class="container">
+        <div class="dashboard-header">
+            <div class="user-profile">
+                <img id="userImageDisplay" src="" alt="Foto de perfil" class="user-avatar">
+            </div>
+            <h1>Bienvenido a tu Dashboard, <span id="usernameDisplay"></span>!</h1>
+            <button id="logoutButton">Cerrar Sesión</button>
+        </div>
+        <div class="dashboard-content">
+            <p>Este es tu panel privado con <strong>Base de Datos Real</strong>.</p>
+            <ul>
+                <li>Estadísticas</li>
+                <li>Perfil</li>
+                <li>Configuración</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script> <!-- Llama al archivo de autenticación -->
+</body>
+</html>
