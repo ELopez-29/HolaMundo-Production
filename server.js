@@ -11,6 +11,7 @@ app.use(cors()); // Permite solicitudes de diferentes orígenes
 app.use(express.json()); // Permite el manejo de datos JSON en las solicitudes
 app.use(express.static('.')); // Sirve archivos estáticos
 
+// Conexión a la base de datos SQLite
 const db = new sqlite3.Database('./database.db', (err) => {
     if (err) {
         console.error('Error al conectar con la base de datos:', err);
@@ -39,28 +40,43 @@ function initializeDatabase() {
 app.post('/api/register', (req, res) => {
     const { username, password } = req.body;
 
+    // Verifica que se proporcionen usuario y contraseña
     if (!username || !password) {
         return res.status(400).json({ error: 'Usuario y contraseña requeridos' });
     }
 
-    // Inserta el nuevo usuario en la base de datos
-    db.run(
-        `INSERT INTO usuarios (username, password, image) VALUES (?, ?, ?)`,
-        [username, password, 'default_image_path'], // Cambia esto por una ruta de imagen predeterminada si es necesario
-        function(err) {
-            if (err) {
-                console.error('Error insertando usuario:', err);
-                return res.status(500).json({ error: 'Error al guardar el usuario' });
-            }
-            res.json({ success: true, message: 'Usuario guardado con éxito' });
+    // Verifica si el nombre de usuario ya existe
+    db.get('SELECT * FROM usuarios WHERE username = ?', [username], (err, row) => {
+        if (err) {
+            console.error('Error al verificar el usuario:', err);
+            return res.status(500).json({ error: 'Error al verificar el usuario' });
         }
-    );
+
+        if (row) {
+            // Si el usuario ya existe, devuelve un mensaje de error
+            return res.status(400).json({ error: 'El nombre de usuario ya está en uso.' });
+        } else {
+            // Si el usuario no existe, procede a insertar el nuevo usuario
+            db.run(
+                `INSERT INTO usuarios (username, password, image) VALUES (?, ?, ?)`,
+                [username, password, 'default_image_path'], // Cambia esto por una ruta de imagen predeterminada si es necesario
+                function(err) {
+                    if (err) {
+                        console.error('Error insertando usuario:', err);
+                        return res.status(500).json({ error: 'Error al guardar el usuario' });
+                    }
+                    res.json({ success: true, message: 'Usuario guardado con éxito' });
+                }
+            );
+        }
+    });
 });
 
 // Ruta para login
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
+    // Verifica que se proporcionen usuario y contraseña
     if (!username || !password) {
         return res.status(400).json({ error: 'Usuario y contraseña requeridos' });
     }
