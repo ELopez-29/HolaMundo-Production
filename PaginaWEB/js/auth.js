@@ -113,8 +113,70 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA PARA MOSTRAR INFORMACIÓN DEL USUARIO EN EL DASHBOARD ---
     const usernameDisplay = document.getElementById('usernameDisplay');
     const userImageDisplay = document.getElementById('userImageDisplay');
+    const userDescription = document.getElementById('userDescription');
+    const userUniqueContent = document.getElementById('userUniqueContent');
 
-    if (usernameDisplay && userImageDisplay) {
+    // Perfiles de usuarios 
+    const userProfiles = {
+        'Erik Lopez': {
+            description: 'Desarrollador web y amante de la tecnología.',
+            profileImage: 'IMG/Esdeath.gif',
+            uniqueContent: '<p>Proyectos recientes: <ul><li>Proyecto A</li><li>Proyecto B</li></ul></p>'
+        },
+        'Sofia': {
+            description: 'Diseñadora gráfica con pasión por el arte.',
+            profileImage: 'IMG/Noche de baile.gif',
+            uniqueContent: '<p>Portafolio de diseño: <a href="#">Ver Portafolio</a></p>'
+        },
+        'Mia': {
+            description: 'Estudiante de ingeniería y entusiasta de la programación.',
+            profileImage: 'IMG/dans.gif',
+            uniqueContent: '<p>Proyectos académicos: <ul><li>Proyecto X</li><li>Proyecto Y</li></ul></p>'
+        },
+        'Zeus': {
+            description: 'Líder de proyectos y experto en gestión.',
+            profileImage: 'IMG/Zeus.gif',
+            uniqueContent: '<p>Metodologías utilizadas: <strong>Agile, Scrum</strong></p>'
+        },
+        'Odin': {
+            description: 'Analista de datos y científico de datos.',
+            profileImage: 'IMG/Odin.gif',
+            uniqueContent: '<p>Herramientas: <strong>Python, R, SQL</strong></p>'
+        },
+        'Hades': {
+            description: 'Ingeniero de software y desarrollador backend.',
+            profileImage: 'IMG/Hades.gif',
+            uniqueContent: '<p>Lenguajes: <strong>Java, C#, Go</strong></p>'
+        },
+        'Ares': {
+            description: 'Especialista en marketing digital y redes sociales.',
+            profileImage: 'IMG/Ares.gif',
+            uniqueContent: '<p>Estrategias: <strong>SEO, SEM</strong></p>'
+        },
+        'Apolo': {
+            description: 'Músico y compositor, amante de la creatividad.',
+            profileImage: 'IMG/Apolo.gif',
+            uniqueContent: '<p>Último álbum: <strong>Sonidos del Alma</strong></p>'
+        },
+        'Atlas': {
+            description: 'Arquitecto y diseñador urbano.',
+            profileImage: 'IMG/Atlas.jpeg',
+            uniqueContent: '<p>Proyectos destacados: <strong>Edificio X, Parque Y</strong></p>'
+        },
+        'Atenea': {
+            description: 'Consultora y experta en desarrollo sostenible.',
+            profileImage: 'IMG/Atenea.gif',
+            uniqueContent: '<p>Iniciativas: <strong>Proyecto Verde</strong></p>'
+        },
+        'Daniela': {
+            description: 'Fotógrafa y viajera apasionada.',
+            profileImage: 'IMG/Find y Share.gif',
+            uniqueContent: '<p>Últimos viajes: <strong>Asia, Europa</strong></p>'
+        }
+    };
+
+    // Cargar información del usuario en el dashboard
+    if (usernameDisplay && userImageDisplay && userProfiles) {
         const sessionData = JSON.parse(sessionStorage.getItem('userSession'));
 
         if (sessionData && sessionData.loggedIn) {
@@ -123,6 +185,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Mostrar la imagen de perfil del usuario
             userImageDisplay.src = sessionData.image;
             userImageDisplay.alt = `Foto de ${sessionData.username}`;
+
+            // Cargar la información específica del usuario
+            const profile = userProfiles[sessionData.username];
+            if (profile) {
+                userDescription.textContent = profile.description;
+                userUniqueContent.innerHTML = profile.uniqueContent;
+            } else {
+                userDescription.textContent = 'Información no disponible.';
+                userUniqueContent.innerHTML = '';
+            }
         } else {
             // Redirige a la página de inicio si no hay sesión activa
             window.location.href = 'index.html';
